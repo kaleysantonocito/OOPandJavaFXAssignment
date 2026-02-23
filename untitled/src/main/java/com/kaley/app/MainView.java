@@ -115,6 +115,11 @@ public class MainView {
         btnDelete.getStyleClass().add("action-btn");
         btnEdit.getStyleClass().add("action-btn");
 
+        btnClear.setMaxWidth(Double.MAX_VALUE);
+        btnAdd.setMaxWidth(Double.MAX_VALUE);
+        btnDelete.setMaxWidth(Double.MAX_VALUE);
+        btnEdit.setMaxWidth(Double.MAX_VALUE);
+
         Region spacer = new Region();
         VBox.setVgrow(spacer, Priority.ALWAYS);
 
