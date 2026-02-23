@@ -54,7 +54,7 @@ public class MainView {
         VBox left = new VBox();
         left.getStyleClass().add("left-sidebar");
         left.setPadding(new Insets(18));
-        left.setPrefWidth(170);
+        left.setPrefWidth(150);
 
         // Avatar placeholder (we'll swap to ImageView later if you want)
         StackPane avatarBox = new StackPane(new Label("👤"));
