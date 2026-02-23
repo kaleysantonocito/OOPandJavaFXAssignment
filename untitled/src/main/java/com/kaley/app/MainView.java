@@ -8,74 +8,80 @@ import javafx.scene.layout.*;
 public class MainView {
 
     private final BorderPane root = new BorderPane();
+    private final VBox outer = new VBox();
 
     public MainView() {
         root.setTop(buildMenuBar());
         root.setLeft(buildLeftSidebar());
         root.setCenter(buildTable());
         root.setRight(buildRightPanel());
-        root.setBottom(buildBottomBar());
+
+        outer.getChildren().addAll(root, buildBottomBar());
+        VBox.setVgrow(root, Priority.ALWAYS);
+        root.setMinHeight(0);
     }
 
     public Parent getRoot() {
-        return root;
+        return outer;
     }
 
     private MenuBar buildMenuBar() {
+
         MenuItem exit = new MenuItem("Exit");
         exit.setOnAction(e -> System.exit(0));
 
-        Menu file = new Menu("File", null,
+        Menu file = new Menu("File");
+        file.getItems().addAll(
                 new MenuItem("New"),
                 new MenuItem("Open"),
                 new SeparatorMenuItem(),
                 exit
         );
 
-        Menu edit = new Menu("Edit", null,
+        Menu edit = new Menu("Edit");
+        edit.getItems().addAll(
                 new MenuItem("Undo"),
                 new MenuItem("Redo")
         );
 
-        Menu theme = new Menu("Theme", null,
+        Menu theme = new Menu("Theme");
+        theme.getItems().addAll(
                 new MenuItem("Default"),
                 new MenuItem("Dark")
         );
 
-        Menu help = new Menu("Help", null,
+        Menu help = new Menu("Help");
+        help.getItems().add(
                 new MenuItem("About")
         );
 
         MenuBar bar = new MenuBar(file, edit, theme, help);
         bar.getStyleClass().add("top-menu");
+
         return bar;
     }
 
     private VBox buildLeftSidebar() {
+
         VBox left = new VBox();
         left.getStyleClass().add("left-sidebar");
         left.setPadding(new Insets(18));
         left.setPrefWidth(150);
 
-        // Avatar placeholder (we'll swap to ImageView later if you want)
         StackPane avatarBox = new StackPane(new Label("👤"));
         avatarBox.getStyleClass().add("avatar-box");
         avatarBox.setPrefSize(120, 120);
 
         left.getChildren().add(avatarBox);
+
         return left;
     }
 
-    private Region buildBottomBar() {
-        Region bar = new Region();
-        bar.getStyleClass().add("bottom-bar");
-        bar.setPrefHeight(28);   // tweak if you want thicker/thinner
-        return bar;
-    }
-
     private TableView<Person> buildTable() {
+
         TableView<Person> table = new TableView<>();
         table.getStyleClass().add("main-table");
+        table.setMinHeight(0);
 
         TableColumn<Person, Integer> id = new TableColumn<>("ID");
         TableColumn<Person, String> first = new TableColumn<>("First Name");
@@ -90,9 +96,10 @@ public class MainView {
     }
 
     private VBox buildRightPanel() {
+
         VBox right = new VBox(10);
         right.getStyleClass().add("right-panel");
-        right.setPadding(new Insets(18));
+        right.setPadding(new Insets(18, 18, 10, 18));
         right.setPrefWidth(260);
 
         TextField tfFirst = new TextField();
@@ -118,18 +125,20 @@ public class MainView {
         Button btnDelete = new Button("Delete");
         Button btnEdit = new Button("Edit");
 
-        btnClear.getStyleClass().add("action-btn");
-        btnAdd.getStyleClass().add("action-btn");
-        btnDelete.getStyleClass().add("action-btn");
-        btnEdit.getStyleClass().add("action-btn");
-
         btnClear.setMaxWidth(Double.MAX_VALUE);
         btnAdd.setMaxWidth(Double.MAX_VALUE);
         btnDelete.setMaxWidth(Double.MAX_VALUE);
         btnEdit.setMaxWidth(Double.MAX_VALUE);
 
+        btnClear.getStyleClass().add("action-btn");
+        btnAdd.getStyleClass().add("action-btn");
+        btnDelete.getStyleClass().add("action-btn");
+        btnEdit.getStyleClass().add("action-btn");
+
         Region spacer = new Region();
-        VBox.setVgrow(spacer, Priority.ALWAYS);
+        VBox.setVgrow(spacer, Priority.SOMETIMES);
+
+        VBox.setMargin(btnClear, new Insets(12, 0, 0, 0));
 
         right.getChildren().addAll(
                 tfFirst, tfLast, tfDept, tfMajor, tfEmail, tfImage,
@@ -138,5 +147,14 @@ public class MainView {
         );
 
         return right;
+    }
+
+    private Region buildBottomBar() {
+        Region bar = new Region();
+        bar.getStyleClass().add("bottom-bar");
+        bar.setMinHeight(22);
+        bar.setPrefHeight(22);
+        bar.setMaxHeight(22);
+        return bar;
     }
 }
