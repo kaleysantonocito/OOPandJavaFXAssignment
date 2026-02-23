@@ -14,6 +14,7 @@ public class MainView {
         root.setLeft(buildLeftSidebar());
         root.setCenter(buildTable());
         root.setRight(buildRightPanel());
+        root.setBottom(buildBottomBar());
     }
 
     public Parent getRoot() {
@@ -63,6 +64,13 @@ public class MainView {
 
         left.getChildren().add(avatarBox);
         return left;
+    }
+
+    private Region buildBottomBar() {
+        Region bar = new Region();
+        bar.getStyleClass().add("bottom-bar");
+        bar.setPrefHeight(28);   // tweak if you want thicker/thinner
+        return bar;
     }
 
     private TableView<Person> buildTable() {
