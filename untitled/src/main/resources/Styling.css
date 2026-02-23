@@ -1,0 +1,62 @@
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #f2f2f2;
+}
+
+/* Top Menu */
+.top-menu {
+    -fx-background-color: #8b4a11;
+}
+.menu-bar {
+    -fx-background-color: #8b4a11;
+}
+.menu .label {
+    -fx-text-fill: white;
+}
+
+/* Left panel */
+.left-sidebar {
+    -fx-background-color: #a8742f;
+}
+.avatar-box {
+    -fx-background-color: white;
+    -fx-border-color: #d9d9d9;
+    -fx-border-width: 2;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-alignment: center;
+    -fx-font-size: 46px;
+}
+
+/* Right panel */
+.right-panel {
+    -fx-background-color: #6bd400;
+}
+.right-panel .text-field {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #cfcfcf;
+    -fx-padding: 8;
+}
+
+/* Buttons */
+.action-btn {
+    -fx-background-color: #a8742f;
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-padding: 14 0 14 0;
+    -fx-background-radius: 14;
+}
+.action-btn:hover {
+    -fx-background-color: #8b4a11;
+    -fx-text-fill: white;
+}
+
+/* Table */
+.table-view .column-header-background {
+    -fx-background-color: #9e9e9e;
+}
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
